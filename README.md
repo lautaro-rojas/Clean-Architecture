@@ -4,6 +4,9 @@
   - [Objetivo](#objetivo)
   - [Marco](#marco)
   - [¿Qué vamos a ver?](#qué-vamos-a-ver)
+  - [Microservicios y Clean Architecture, ¿Son formas distintas de arquitectura o un Microservicio tiene dentro Clean Architecture?](#microservicios-y-clean-architecture-son-formas-distintas-de-arquitectura-o-un-microservicio-tiene-dentro-clean-architecture)
+    - [Microservicios: La Macro-Arquitectura (El Ecosistema)](#microservicios-la-macro-arquitectura-el-ecosistema)
+    - [Clean Architecture: La Micro-Arquitectura (El Interior)](#clean-architecture-la-micro-arquitectura-el-interior)
   - [Definiendo las capas](#definiendo-las-capas)
     - [Diagrama](#diagrama)
     - [Domain](#domain)
@@ -31,6 +34,26 @@ Actuamente programo en WebApis con C# y .NET así que los ejemplos se van a enco
 - Principos SOLID
 - Scaffolding
 
+## Microservicios y Clean Architecture, ¿Son formas distintas de arquitectura o un Microservicio tiene dentro Clean Architecture?
+
+La confusión es muy común porque en el desarrollo de software usamos la palabra "arquitectura" para referirnos a cosas que ocurren en escalas completamente diferentes.
+
+Un microservicio puede (y muchas veces debería) tener Clean Architecture en su interior. No son patrones excluyentes, sino complementarios. **Resuelven problemas distintos en niveles distintos: uno a nivel de sistema y otro a nivel de aplicación.**
+
+### Microservicios: La Macro-Arquitectura (El Ecosistema)
+
+El patrón de microservicios dicta cómo se estructura un sistema completo. Se enfoca en cómo dividir un dominio de negocio grande en piezas más pequeñas, independientes y desplegables por separado.
+
+- Se preocupa: De la comunicación entre servicios (HTTP, gRPC, RabbitMQ), la resiliencia, el escalado independiente, los despliegues y la división de bases de datos.
+- Lo que ignora: A la macro-arquitectura no le importa en absoluto cómo está escrito el código dentro de cada servicio. Un microservicio podría ser un script espagueti de 2000 líneas o una obra maestra del diseño de software. Al ecosistema le da igual, siempre y cuando exponga los endpoints correctos y cumpla su contrato.
+
+### Clean Architecture: La Micro-Arquitectura (El Interior)
+
+Clean Architecture dicta cómo se estructura el código fuente de una sola aplicación, en este caso, de un solo microservicio. Se enfoca en la separación de responsabilidades y en mantener el dominio del negocio aislado de los detalles técnicos.
+
+- Se preocupa: De que las reglas de negocio (Entidades, Casos de Uso) no dependan de la base de datos (SQL, Mongo), del framework web o de las APIs externas.
+- Lo que ignora: A Clean Architecture no le importa si la aplicación es un monolito gigante, una herramienta de consola, o uno de cincuenta microservicios. Solo le importa que el código interno esté desacoplado y sea testeable.
+
 ## Definiendo las capas
 
 Empecemos por el principio. Cuando tuve que aprender sobre esta arquitectura fué un reto, porue yo ya había aprendido la clásica "Programación en capas". Entonces, ¿Cómo podía traducir lo que yo ya conocía a esto nuevo?
@@ -44,7 +67,7 @@ El cambio mas notorio son los nombres de las capas. Aprendí las capas BE, BLL, 
 | Business Logical Layer (BLL)      | Application           | Lógica de negocio |
 | Data Access Layer (DAL)           | Infraestructure       | Acceso a datos    |
 
-Entonces Clean Architecture también usa capas (generalmente representadas como anillos concéntricos o cebolla), pero invierte el control usando la **Regla de Dependencia: El código solo puede apuntar hacia adentro. Las capas internas no deben saber absolutamente nada de las capas externas.**
+Entonces, Clean Architecture también usa capas (generalmente representadas como anillos concéntricos o cebolla), pero invierte el control usando la **Regla de Dependencia: El código solo puede apuntar hacia adentro. Las capas internas no deben saber absolutamente nada de las capas externas.**
 
 Esto se traduce a:
 
@@ -82,10 +105,10 @@ flowchart TD
     end
 
     %% Regla de dependencia de Clean Architecture (Siempre hacia el centro)
-    P -->|Depende de| A
-    P -->|Depende de| I
-    I -->|Depende de| A
-    A -->|Depende de| D
+    P -->|Conoce a| A
+    P -->|Conoce a| I
+    I -->|Conoce a| A
+    A -->|Conoce a| D
 
     %% Estilos de los contenedores
     style OuterLayer fill:none,stroke:#666,stroke-width:2px,stroke-dasharray: 5 5
