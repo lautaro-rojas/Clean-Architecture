@@ -8,6 +8,7 @@
     - [Microservicios: La Macro-Arquitectura (El Ecosistema)](#microservicios-la-macro-arquitectura-el-ecosistema)
     - [Clean Architecture: La Micro-Arquitectura (El Interior)](#clean-architecture-la-micro-arquitectura-el-interior)
   - [Definiendo las capas](#definiendo-las-capas)
+    - [¿Por qué Presentation conoce a Infraestructure?](#por-qué-presentation-conoce-a-infraestructure)
     - [Diagrama](#diagrama)
     - [Domain](#domain)
     - [Application](#application)
@@ -76,6 +77,10 @@ Esto se traduce a:
 - Infraestructure "conoce" a Application.
 - Application "conoce" a Domain.
 - Domain no "conoce" a nadie.
+
+### ¿Por qué Presentation conoce a Infraestructure?
+
+Por la inyección de dependencias y el contexto de la BD.
 
 ### Diagrama
 
