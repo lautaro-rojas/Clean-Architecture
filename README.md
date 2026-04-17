@@ -16,6 +16,7 @@
     - [Web Api](#web-api)
   - [¿Qué es cada capa en el código?](#qué-es-cada-capa-en-el-código)
   - [¿Qué es "conoce" en el código?](#qué-es-conoce-en-el-código)
+  - [¿Cómo es el scaffolding?](#cómo-es-el-scaffolding)
 
 ## Objetivo
 
@@ -173,4 +174,62 @@ dotnet add src\NOMBREPROYECTO.Infrastructure\NOMBREPROYECTO.Infrastructure.cspro
 
 # Application conoce de Domain
 dotnet add src\NOMBREPROYECTO.Application\NOMBREPROYECTO.Application.csproj reference src\NOMBREPROYECTO.Domain\NOMBREPROYECTO.Domain.csproj
+```
+
+## ¿Cómo es el scaffolding?
+
+```Plaintext
+NOMBREPROYECTO (carpeta)
+├── src/
+│   ├── NOMBREPROYECTO.Domain/
+│   │   ├── Entities/        # Clases puras.
+│   │   ├── Interfaces/      # Contratos abstractos (ej. IUserService).
+│   │   └── NOMBREPROYECTO.Domain.csproj
+│   │
+│   ├── NOMBREPROYECTO.Application/
+│   │   ├── DTOs/            # Objetos para transferir datos por la red.
+│   │   ├── Services/        # Casos de uso y orquestación.
+│   │   ├── Mappings/        # Transformaciones de objetos (ej. AutoMapper).
+│   │   ├── Interfaces/      # Contratos para servicios externos.
+│   │   └── NOMBREPROYECTO.Application.csproj
+│   │
+│   ├── NOMBREPROYECTO.Infrastructure/
+│   │   ├── Data/            # Configuración de Entity Framework y DbContext.
+│   │   ├── Repositories/    # Implementación real con la base de datos.
+│   │   └── NOMBREPROYECTO.Infrastructure.csproj
+│   │
+│   └── NOMBREPROYECTO.WebApi/
+│       ├── Controllers/     # Endpoints REST.
+│       ├── Properties/      # Configuración de arranque local.
+│       ├── Program.cs       # Inyección de dependencias y Swagger.
+│       ├── appsettings.json # Variables de entorno y connection strings.
+│       └── NOMBREPROYECTO.WebApi.csproj
+│
+├── test/
+├── Docker
+├── .dockerignore
+├── README.md
+├── .gitignore
+└── NOMBREPROYECTO.slnx
+```
+
+```Bash
+# Crear las sub-carpetas internas de cada proyecto
+# Subcarpetas de Domain
+mkdir src\NOMBREPROYECTO.Domain\Entities
+mkdir src\NOMBREPROYECTO.Domain\Interfaces
+mkdir src\NOMBREPROYECTO.Domain\Enums
+
+# Subcarpetas de Application
+mkdir src\NOMBREPROYECTO.Application\DTOs
+mkdir src\NOMBREPROYECTO.Application\Services
+mkdir src\NOMBREPROYECTO.Application\Mappings
+mkdir src\NOMBREPROYECTO.Application\Interfaces
+
+# Subcarpetas de Infrastructure
+mkdir src\NOMBREPROYECTO.Infrastructure\Data
+mkdir src\NOMBREPROYECTO.Infrastructure\Repositories
+
+# Subcarpetas de WebAPI
+mkdir src\NOMBREPROYECTO.WebApi\Controllers
 ```
