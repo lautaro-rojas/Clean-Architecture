@@ -17,6 +17,7 @@
   - [¿Qué es cada capa en el código?](#qué-es-cada-capa-en-el-código)
   - [¿Qué es "conoce" en el código?](#qué-es-conoce-en-el-código)
   - [¿Cómo es el scaffolding?](#cómo-es-el-scaffolding)
+- [Notas](#notas)
 
 ## Objetivo
 
@@ -233,3 +234,36 @@ mkdir src\NOMBREPROYECTO.Infrastructure\Repositories
 # Subcarpetas de WebAPI
 mkdir src\NOMBREPROYECTO.WebApi\Controllers
 ```
+
+# Notas
+
+Por que repository pattern no está en refactoring.guru
+
+La razón principal por la que el patrón Repository no aparece en Refactoring.guru es porque ese sitio web se centra casi exclusivamente en los 23 patrones de diseño clásicos del "Gang of Four" (GoF).
+
+El patrón Repository pertenece a una categoría diferente y tiene orígenes distintos. Aquí te explico las diferencias clave:
+
+1. Patrones de Diseño (GoF) vs. Patrones Arquitectónicos
+Refactoring.guru (Patrones GoF): Se enfoca en el libro de 1994 Design Patterns: Elements of Reusable Object-Oriented Software. Estos patrones (como Singleton, Factory, Observer, o Strategy) resuelven problemas de bajo y medio nivel sobre cómo crear y comunicar objetos en la memoria.
+
+El patrón Repository: Es un patrón arquitectónico (o patrón de arquitectura de aplicaciones empresariales). Resuelve un problema de nivel más alto: cómo aislar la lógica de dominio o de negocio de los detalles de acceso a datos (bases de datos, APIs, etc.).
+
+2. El origen de Repository
+Mientras que los patrones de Refactoring.guru vienen del Gang of Four, el patrón Repository fue popularizado principalmente por dos fuentes literarias distintas:
+
+Patterns of Enterprise Application Architecture (PoEAA) por Martin Fowler (2002).
+
+Domain-Driven Design (DDD) por Eric Evans (2003).
+
+Martin Fowler define Repository como algo que "media entre el dominio y las capas de mapeo de datos usando una interfaz similar a una colección para acceder a los objetos del dominio". Refactoring.guru no cubre patrones empresariales ni de persistencia de datos.
+
+3. ¿Dónde puedes aprender sobre el patrón Repository?
+Dado que Refactoring.guru no lo cubre, te recomiendo estas fuentes (que son los "estándares de la industria" para este patrón):
+
+El catálogo online de Martin Fowler: Tiene una excelente definición técnica en su sitio web.
+
+Documentación de Microsoft (Arquitectura de .NET): Microsoft tiene guías extensas y muy visuales sobre cómo implementar el patrón Repository y Unit of Work, especialmente en el contexto de C# y Entity Framework, pero los conceptos aplican a cualquier lenguaje.
+
+Libros de Domain-Driven Design: Cualquier recurso introductorio a DDD abordará el patrón Repository en detalle.
+
+En resumen: Refactoring.guru es un catálogo de micro-soluciones orientadas a objetos (GoF), mientras que Repository es una macro-solución orientada a la persistencia y arquitectura del software.
